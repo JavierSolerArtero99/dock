@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -e
+
+DOCK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Source modules
+source "$DOCK_DIR/lib/constants.sh"
+source "$DOCK_DIR/lib/utils.sh"
+source "$DOCK_DIR/lib/commands.sh"
+
+# Main command router
+case "$1" in
+    use)        cmd_use "$2" ;;
+    which)      cmd_which ;;
+    init)       cmd_init ;;
+    config)     cmd_config ;;
+    up)         cmd_up "$2" ;;
+    down)       cmd_down ;;
+    restart)    cmd_restart ;;
+    destroy)    cmd_destroy ;;
+    status)     cmd_status ;;
+    logs)       cmd_logs "$2" ;;
+    shell)      cmd_shell ;;
+    root)       cmd_root ;;
+    mysql)      cmd_mysql ;;
+    artisan)    shift; cmd_artisan "$@" ;;
+    composer)   shift; cmd_composer "$@" ;;
+    tinker)     cmd_tinker ;;
+    test)       shift; cmd_test "$@" ;;
+    migrate)    cmd_migrate ;;
+    fresh)      cmd_fresh ;;
+    npm)        shift; cmd_npm "$@" ;;
+    npx)        shift; cmd_npx "$@" ;;
+    yarn)       shift; cmd_yarn "$@" ;;
+    dev)        cmd_dev ;;
+    build-assets) cmd_build_assets ;;
+    build)      cmd_build ;;
+    install)    cmd_install ;;
+    help|"")    show_help ;;
+    *)          print_error "$MSG_ERR_UNKNOWN_CMD $1"; show_help; exit 1 ;;
+esac

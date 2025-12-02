@@ -1,0 +1,45 @@
+Uso: ./dock [comando] [opciones]
+
+Configuración:
+  use <ruta>      Configurar proyecto Laravel a usar
+  which           Mostrar proyecto actual
+  init            Inicializar archivos Docker en el proyecto
+  config          Editar configuración (.dock.env)
+
+Contenedores:
+  up              Levantar contenedores
+  up -d           Levantar en segundo plano
+  down            Detener contenedores
+  restart         Reiniciar contenedores
+  destroy         Eliminar contenedores, volúmenes e imágenes
+  status          Ver estado de los contenedores
+  logs [svc]      Ver logs (app, node, db, mail)
+
+Acceso:
+  shell           Bash en contenedor app
+  root            Bash como root en app
+  mysql           MySQL CLI
+
+Laravel:
+  artisan [cmd]   Ejecutar artisan
+  composer [cmd]  Ejecutar composer
+  tinker          Laravel Tinker
+  test [args]     Ejecutar tests
+  migrate         Ejecutar migraciones
+  fresh           migrate:fresh --seed
+
+Node:
+  npm [cmd]       Ejecutar npm
+  npx [cmd]       Ejecutar npx
+  yarn [cmd]      Ejecutar yarn
+  dev             Iniciar Vite dev server
+  build-assets    Compilar assets para producción
+
+Setup:
+  install         Instalación completa del proyecto
+  build           Reconstruir imágenes
+
+Ejemplo de uso:
+  ./dock use ~/proyectos/mi-app-laravel
+  ./dock init
+  ./dock install

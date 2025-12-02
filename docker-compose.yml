@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: ${APP_NAME:-laravel}_app
+    restart: unless-stopped
+    working_dir: /var/www
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    volumes:
+      - ${PROJECT_PATH}:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - laravel_network
+    depends_on:
+      db:
+        condition: service_healthy
+    command: php artisan serve --host=0.0.0.0 --port=8000
+
+  node:
+    image: node:20-alpine
+    container_name: ${APP_NAME:-laravel}_node
+    working_dir: /var/www
+    volumes:
+      - ${PROJECT_PATH}:/var/www
+    networks:
+      - laravel_network
+    ports:
+      - "${VITE_PORT:-5173}:5173"
+    tty: true
+
+  db:
+    image: mysql:8.0
+    container_name: ${APP_NAME:-laravel}_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-laravel}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-secret}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
+      MYSQL_USER: ${DB_USERNAME:-laravel}
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - ${APP_NAME:-laravel}_dbdata:/var/lib/mysql
+    networks:
+      - laravel_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mailpit:
+    image: axllent/mailpit
+    container_name: ${APP_NAME:-laravel}_mail
+    restart: unless-stopped
+    ports:
+      - "${MAIL_PORT:-1025}:1025"
+      - "${MAILPIT_UI_PORT:-8025}:8025"
+    networks:
+      - laravel_network
+
+networks:
+  laravel_network:
+    name: ${APP_NAME:-laravel}_network
+    driver: bridge
+
+volumes:
+  laravel_dbdata:
+    name: ${APP_NAME:-laravel}_dbdata
