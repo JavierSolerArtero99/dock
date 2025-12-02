@@ -56,24 +56,20 @@ cmd_config() {
 }
 
 # Container commands
-cmd_up() {
+cmd_start() {
     print_info "$MSG_INFO_LIFTING $(get_project_dir)"
-    if [ "$1" == "-d" ]; then
-        run_compose up -d --remove-orphans
-        print_success "$MSG_SUCCESS_CONTAINERS_UP"
-        echo ""
-        run_compose exec -d app php artisan serve --host=0.0.0.0 --port=8000
-        print_success "$MSG_SUCCESS_LARAVEL_STARTED"
-        run_compose exec -d node npm run dev -- --host
-        print_success "$MSG_SUCCESS_VITE_STARTED"
-        echo ""
-        print_services
-    else
-        run_compose up --remove-orphans
-    fi
+    run_compose up -d --remove-orphans
+    print_success "$MSG_SUCCESS_CONTAINERS_UP"
+    echo ""
+    run_compose exec -d app php artisan serve --host=0.0.0.0 --port=8000
+    print_success "$MSG_SUCCESS_LARAVEL_STARTED"
+    run_compose exec -d node npm run dev -- --host
+    print_success "$MSG_SUCCESS_VITE_STARTED"
+    echo ""
+    print_services
 }
 
-cmd_down() {
+cmd_stop() {
     print_info "$MSG_INFO_STOPPING"
     run_compose down
     print_success "$MSG_SUCCESS_CONTAINERS_DOWN"

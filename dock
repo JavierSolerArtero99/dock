@@ -15,8 +15,8 @@ case "$1" in
     which)      cmd_which ;;
     init)       cmd_init ;;
     config)     cmd_config ;;
-    up)         cmd_up "$2" ;;
-    down)       cmd_down ;;
+    start)      cmd_start ;;
+    stop)       cmd_stop ;;
     restart)    cmd_restart ;;
     destroy)    cmd_destroy ;;
     status)     cmd_status ;;
