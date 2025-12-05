@@ -1,23 +1,5 @@
 #!/bin/bash
 
-cmd_use() {
-    if [ -z "$1" ]; then
-        print_error "$MSG_ERR_SPECIFY_PATH"
-        echo "$MSG_HELP_USE"
-        exit 1
-    fi
-    set_project_dir "$1"
-}
-
-cmd_which() {
-    local project_dir=$(get_project_dir)
-    if [ -z "$project_dir" ]; then
-        print_warning "$MSG_WARN_NO_PROJECT"
-    else
-        print_info "$MSG_INFO_PROJECT $project_dir"
-    fi
-}
-
 cmd_init() {
     local project_dir=$(require_project)
     print_info "$MSG_INFO_INIT $project_dir"

@@ -5,16 +5,15 @@ CLI reutilizable para dockerizar cualquier proyecto Laravel.
 ## Uso rápido
 
 ```bash
-./dock use ~/proyectos/mi-app-laravel
-./dock init
-./dock install
+cd ~/proyectos/mi-app-laravel
+dock init
+dock install
 ```
 
 ## Comandos
 
 | Comando | Descripción |
 |---------|-------------|
-| `dock use <ruta>` | Configurar proyecto |
 | `dock init` | Inicializar configuración |
 | `dock install` | Instalación completa |
 | `dock up / up -d` | Levantar contenedores |

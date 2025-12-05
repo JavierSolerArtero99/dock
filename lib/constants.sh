@@ -10,19 +10,13 @@ NC='\033[0m'
 
 # Configuration
 DOCKER_COMPOSE="docker compose"
-DOCK_CONFIG=".dock"
 DOCK_ENV=".dock.env"
 
 # Messages - Errors
-MSG_ERR_NO_PROJECT="❌ No hay proyecto configurado."
-MSG_ERR_PROJECT_NOT_EXISTS="❌ El proyecto configurado no existe:"
-MSG_ERR_DIR_NOT_EXISTS="❌ El directorio no existe:"
-MSG_ERR_SPECIFY_PATH="❌ Debes especificar la ruta del proyecto"
+MSG_ERR_NOT_LARAVEL="❌ No es un proyecto Laravel (no se encontró artisan)"
 MSG_ERR_UNKNOWN_CMD="❌ Comando desconocido:"
 
 # Messages - Warnings
-MSG_WARN_NOT_LARAVEL="⚠️  No parece ser un proyecto Laravel (no se encontró artisan)"
-MSG_WARN_NO_PROJECT="⚠️  No hay proyecto configurado"
 MSG_WARN_FILE_EXISTS="ya existe"
 MSG_WARN_NO_ENV="⚠️  No existe $DOCK_ENV, ejecuta './dock init' primero"
 MSG_WARN_DESTROY="⚠️  Esta acción eliminará:"
@@ -51,7 +45,6 @@ MSG_INFO_VITE_DEV="⚡ Iniciando servidor de desarrollo Vite..."
 MSG_INFO_VITE_BUILD="📦 Compilando assets para producción..."
 
 # Messages - Success
-MSG_SUCCESS_PROJECT_SET="✅ Proyecto configurado:"
 MSG_SUCCESS_CREATED="✅ Creado:"
 MSG_SUCCESS_CREATED_ENV="✅ Creado .env desde .env.example"
 MSG_SUCCESS_INIT="✅ Inicialización completada"
@@ -66,18 +59,7 @@ MSG_SUCCESS_LARAVEL_STARTED="✅ Servidor Laravel iniciado"
 MSG_SUCCESS_VITE_STARTED="✅ Servidor Vite iniciado"
 
 # Messages - Prompts
-MSG_PROMPT_CONTINUE="¿Continuar de todos modos? (y/N): "
 MSG_PROMPT_CONFIRM="¿Estás seguro? (y/N): "
-
-# Messages - Help
-MSG_HELP_USAGE="Uso: ./dock [comando] [opciones]"
-MSG_HELP_USE="Uso: ./dock use /ruta/al/proyecto"
-MSG_HELP_CONFIG_HEADER="Configuración:"
-MSG_HELP_CONTAINERS_HEADER="Contenedores:"
-MSG_HELP_ACCESS_HEADER="Acceso:"
-MSG_HELP_LARAVEL_HEADER="Laravel:"
-MSG_HELP_SETUP_HEADER="Setup:"
-MSG_HELP_EXAMPLE_HEADER="Ejemplo de uso:"
 
 # Messages - Services
 MSG_SERVICES_HEADER="🌐 Servicios disponibles:"
@@ -96,3 +78,4 @@ DB_PASSWORD=secret"
 MSG_ENV_CONFIG_MAIL="MAIL_MAILER=smtp
 MAIL_HOST=mail
 MAIL_PORT=1025"
+

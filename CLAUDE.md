@@ -13,7 +13,7 @@ dock (main entry point)
 ├── lib/constants.sh       # Colors, config vars, all UI messages (Spanish)
 ├── lib/utils.sh           # Helper functions: print_*, project dir, env loading, docker compose wrapper
 ├── lib/commands/
-│   ├── config.sh          # use, which, init, config
+│   ├── config.sh          # init, config
 │   ├── docker.sh          # start, stop, restart, destroy, status, logs, build, install
 │   ├── app.sh             # shell, root, artisan, composer
 │   ├── node.sh            # npm, npx, yarn, dev, build_assets
@@ -37,13 +37,12 @@ dock (main entry point)
 
 ## Common Commands
 
-```bash
-# Point to a Laravel project and initialize
-./dock use /path/to/laravel-project
-./dock init
+Run all commands from within a Laravel project directory (auto-detected via `artisan` file).
 
-# Full installation (build, deps, migrations)
-./dock install
+```bash
+# Initialize and install
+dock init       # Create .dock.env config
+dock install    # Full installation (build, deps, migrations)
 
 # Start/stop containers
 ./dock start    # Brings up containers + starts artisan serve + vite
