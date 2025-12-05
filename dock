@@ -7,7 +7,11 @@ DOCK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Source modules
 source "$DOCK_DIR/lib/constants.sh"
 source "$DOCK_DIR/lib/utils.sh"
-source "$DOCK_DIR/lib/commands.sh"
+source "$DOCK_DIR/lib/commands/config.sh"
+source "$DOCK_DIR/lib/commands/docker.sh"
+source "$DOCK_DIR/lib/commands/app.sh"
+source "$DOCK_DIR/lib/commands/node.sh"
+source "$DOCK_DIR/lib/commands/db.sh"
 
 # Main command router
 case "$1" in
@@ -26,10 +30,6 @@ case "$1" in
     mysql)      cmd_mysql ;;
     artisan)    shift; cmd_artisan "$@" ;;
     composer)   shift; cmd_composer "$@" ;;
-    tinker)     cmd_tinker ;;
-    test)       shift; cmd_test "$@" ;;
-    migrate)    cmd_migrate ;;
-    fresh)      cmd_fresh ;;
     npm)        shift; cmd_npm "$@" ;;
     npx)        shift; cmd_npx "$@" ;;
     yarn)       shift; cmd_yarn "$@" ;;
