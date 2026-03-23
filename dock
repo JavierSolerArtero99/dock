@@ -17,8 +17,8 @@ source "$DOCK_DIR/lib/commands/db.sh"
 case "$1" in
     init)       cmd_init ;;
     config)     cmd_config ;;
-    start)      cmd_start ;;
-    stop)       cmd_stop ;;
+    start|up)   cmd_start "$2" ;;
+    stop|down)  cmd_stop ;;
     restart)    cmd_restart ;;
     destroy)    cmd_destroy ;;
     status)     cmd_status ;;
@@ -28,6 +28,10 @@ case "$1" in
     mysql)      cmd_mysql ;;
     artisan)    shift; cmd_artisan "$@" ;;
     composer)   shift; cmd_composer "$@" ;;
+    test)       shift; cmd_artisan test "$@" ;;
+    tinker)     cmd_artisan tinker ;;
+    migrate)    cmd_artisan migrate ;;
+    fresh)      cmd_artisan migrate:fresh --seed ;;
     npm)        shift; cmd_npm "$@" ;;
     npx)        shift; cmd_npx "$@" ;;
     yarn)       shift; cmd_yarn "$@" ;;
