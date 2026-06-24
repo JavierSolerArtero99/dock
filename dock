@@ -32,6 +32,7 @@ case "$1" in
     shell)      cmd_shell ;;
     root)       cmd_root ;;
     mysql)      cmd_mysql ;;
+    db-connections) cmd_db_connections ;;
     artisan)    shift; cmd_artisan "$@" ;;
     composer)   shift; cmd_composer "$@" ;;
     test)       shift; cmd_artisan test "$@" ;;

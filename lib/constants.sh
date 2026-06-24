@@ -15,6 +15,7 @@ DOCK_ENV=".dock.env"
 # Messages - Errors
 MSG_ERR_NOT_LARAVEL="❌ No es un proyecto Laravel (no se encontró artisan)"
 MSG_ERR_UNKNOWN_CMD="❌ Comando desconocido:"
+MSG_ERR_NO_XMLSTARLET="❌ Falta xmlstarlet, instálalo con: brew install xmlstarlet"
 
 # Messages - Warnings
 MSG_WARN_FILE_EXISTS="ya existe"
@@ -43,6 +44,7 @@ MSG_INFO_INSTALLING="📥 Instalando proyecto:"
 MSG_INFO_INSTALLING_NODE_DEPS="📦 Instalando dependencias de Node..."
 MSG_INFO_VITE_DEV="⚡ Iniciando servidor de desarrollo Vite..."
 MSG_INFO_VITE_BUILD="📦 Compilando assets para producción..."
+MSG_INFO_IMPORT_SEQUEL="🔌 Importando conexión a Sequel Ace..."
 
 # Messages - Success
 MSG_SUCCESS_CREATED="✅ Creado:"
@@ -57,6 +59,7 @@ MSG_SUCCESS_INSTALL="🎉 ¡Instalación completada!"
 MSG_SUCCESS_VITE_BUILD="✅ Assets compilados correctamente"
 MSG_SUCCESS_LARAVEL_STARTED="✅ Servidor Laravel iniciado"
 MSG_SUCCESS_VITE_STARTED="✅ Servidor Vite iniciado"
+MSG_SUCCESS_SEQUEL_IMPORTED="✅ Conexión importada en Sequel Ace:"
 
 # Messages - Prompts
 MSG_PROMPT_CONFIRM="¿Estás seguro? (y/N): "

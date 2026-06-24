@@ -19,6 +19,7 @@ Acceso:
   shell           Bash en contenedor app
   root            Bash como root en app
   mysql           MySQL CLI
+  db-connections  Importar la conexión BD en Sequel Ace (macOS)
 
 Laravel:
   artisan [cmd]   Ejecutar artisan
