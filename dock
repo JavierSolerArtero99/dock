@@ -2,7 +2,13 @@
 
 set -e
 
-DOCK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SOURCE="${BASH_SOURCE[0]}"
+while [ -L "$SOURCE" ]; do
+    DOCK_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$DOCK_DIR/$SOURCE"
+done
+DOCK_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 # Source modules
 source "$DOCK_DIR/lib/constants.sh"

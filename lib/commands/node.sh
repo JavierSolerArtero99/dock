@@ -14,7 +14,7 @@ cmd_yarn() {
 
 cmd_dev() {
     print_info "$MSG_INFO_VITE_DEV"
-    run_compose exec node npm run dev -- --host
+    run_compose exec node sh -c "pkill -f vite 2>/dev/null; npm run dev -- --host"
 }
 
 cmd_build_assets() {

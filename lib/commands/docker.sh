@@ -5,9 +5,9 @@ cmd_start() {
     run_compose up -d --remove-orphans
     print_success "$MSG_SUCCESS_CONTAINERS_UP"
     echo ""
-    run_compose exec -d app php artisan serve --host=0.0.0.0 --port=8000
+    start_app_server
     print_success "$MSG_SUCCESS_LARAVEL_STARTED"
-    run_compose exec -d node npm run dev -- --host
+    start_vite_server
     print_success "$MSG_SUCCESS_VITE_STARTED"
     echo ""
     print_services
@@ -96,9 +96,9 @@ cmd_install() {
     print_info "$MSG_INFO_RUNNING_MIGRATIONS"
     run_compose exec app php artisan migrate --force || true
 
-    run_compose exec -d app php artisan serve --host=0.0.0.0 --port=8000
+    start_app_server
     print_success "$MSG_SUCCESS_LARAVEL_STARTED"
-    run_compose exec -d node npm run dev -- --host
+    start_vite_server
     print_success "$MSG_SUCCESS_VITE_STARTED"
 
     print_success "$MSG_SUCCESS_INSTALL"

@@ -54,6 +54,19 @@ run_compose() {
     $DOCKER_COMPOSE -f "$DOCK_DIR/docker-compose.yml" "$@"
 }
 
+# Dev server starters (idempotent: stop any previous instance first)
+start_app_server() {
+    # A duplicate "artisan serve" simply fails to bind port 8000 and exits, so no kill is needed.
+    run_compose exec -d app sh -c "nohup php artisan serve --host=0.0.0.0 --port=8000 >/tmp/artisan-serve.log 2>&1"
+}
+
+start_vite_server() {
+    # Stop any previous Vite first (in a separate exec so pkill does not match its own launcher),
+    # otherwise a second Vite drifts to port 5174 and the public/hot file points to an unmapped port.
+    run_compose exec node pkill -f vite 2>/dev/null || true
+    run_compose exec -d node sh -c "nohup npm run dev -- --host >/tmp/vite.log 2>&1"
+}
+
 # Print services info
 print_services() {
     load_env
