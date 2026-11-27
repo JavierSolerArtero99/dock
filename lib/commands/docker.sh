@@ -96,6 +96,15 @@ cmd_install() {
     print_info "$MSG_INFO_RUNNING_MIGRATIONS"
     run_compose exec app php artisan migrate --force || true
 
+    # Optional project hook: interactive, and never fatal for the install
+    if grep -q '"dock-post-install"' "$project_dir/composer.json" 2>/dev/null; then
+        print_info "$MSG_INFO_POST_INSTALL"
+        local exec_flags=""
+        [ ! -t 0 ] && exec_flags="-T"
+        run_compose exec $exec_flags app composer run-script dock-post-install \
+            || print_warning "$MSG_WARN_POST_INSTALL_FAILED"
+    fi
+
     start_app_server
     print_success "$MSG_SUCCESS_LARAVEL_STARTED"
     start_vite_server

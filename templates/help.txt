@@ -38,6 +38,8 @@ Node:
 
 Setup:
   install         Instalación completa del proyecto
+                  (tras migrar ejecuta el script composer "dock-post-install"
+                   si el proyecto lo define; si falla solo avisa)
   build           Reconstruir imágenes
 
 Ejemplo de uso:
